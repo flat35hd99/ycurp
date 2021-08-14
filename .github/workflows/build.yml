@@ -15,9 +15,9 @@ jobs:
           python-version: '3.8'
           architecture: 'x64'
       - name: Update packages
-        run: sudo apt-get update
+        run: apt-get update
       - name: Install dependent packages
-        run: sudo apt-get install graphviz graphviz-dev openmpi-bin openmpi-dev
+        run: apt-get install graphviz graphviz-dev openmpi-bin openmpi-dev
       - name: Install numpy
         run: pip install numpy
       - name: build curp
