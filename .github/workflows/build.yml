@@ -14,9 +14,10 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
-      - name: Install apt dependencies
-        run: sudo apt update &&\
-              sudo apt install -y\
+      - name: Update packages
+        run: sudo apt update
+      - name: Install dependent packages
+        run: sudo apt install -y\
                 graphviz graphviz-dev\
                 openmpi-bin openmpi-dev
       - name: Install numpy
