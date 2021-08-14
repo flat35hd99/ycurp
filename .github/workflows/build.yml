@@ -17,7 +17,7 @@ jobs:
       - name: Update packages
         run: sudo apt-get update
       - name: Install dependent packages
-        run: sudo apt-get install graphviz graphviz-dev openmpi-bin
+        run: sudo apt-get install graphviz graphviz-dev openmpi-bin openmpi-dev
       - name: Install numpy
         run: pip install numpy
       - name: build curp
