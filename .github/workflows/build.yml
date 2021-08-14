@@ -14,14 +14,30 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+
       - name: Update packages
         run: sudo apt-get update
       - name: Install dependent packages
         run: sudo apt install graphviz graphviz-dev openmpi-bin libopenmpi-dev
+
+        # setup.py needs numpy but it is not good way.
+        # We have to resolve dependencies of that.
       - name: Install numpy
         run: pip install numpy
       - name: build curp
         run: pip install .
+
+      - name: Export PATH
+        run: export PATH=$PATH:~/.local/bin
       - name: View help message
-        run: export PATH=$PATH:~/.local/bin && curp --help
+        run: curp --help
         
